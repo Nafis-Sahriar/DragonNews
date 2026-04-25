@@ -1,35 +1,35 @@
 'use client'
 import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const LogInPage = () => {
 
+    const {register, handleSubmit , formState:{errors}} = useForm();
 
-    const handleLogInFunc =(e) =>
+
+    const handleLogInFunc =(data) =>
     {
-        e.preventDefault();
-
-
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        console.log(email, password);
-
-
+        
+        console.log(data);
 
     }
+
+    console.log(errors);
 
 
   return (
     <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-300">
-      <div className="p-4 rounded-xl bg-white ">
+      <div className="p-10 rounded-xl bg-white ">
         <h2 className="font-bold text-3xl text-center mb-15">Login Your Account</h2>
 
-        <form className="space-y-4" onSubmit={handleLogInFunc}>
+        <form className="space-y-4" onSubmit={handleSubmit(handleLogInFunc)}>
           <fieldset className="fieldset">
 
                 <legend className="fieldset-legend">E-Mail</legend>
 
-                <input name="email" type="email" className="input" placeholder="Enter Your Email" />
+                <input {...register("email", {required:"Email is required to log in."})} type="email" className="input" placeholder="Enter Your Email" />
+                {errors.email? <p className="text-red-700">{errors.email.message}</p>:<></>}
 
           </fieldset>
 
@@ -37,7 +37,8 @@ const LogInPage = () => {
 
                 <legend className="fieldset-legend">Password</legend>
 
-                <input name="password" type="password" className="input" placeholder="Enter Your Password" />
+                <input {...register("password",{required:"Password Required for log in."})} type="password" className="input" placeholder="Enter Your Password" />
+                {errors.password && <p className="text-red-700">{errors.password.message}</p>}
 
           </fieldset>
 
