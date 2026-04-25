@@ -1,36 +1,11 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Ebar log in function crete korte hobe, Karon User log in page theke form fillup korle amake oi data gulo recieve korte hobe. 
+Form er moddhe on submit ache, tar moddhe amake ekta function call korte hobe, jeta amake form er data gulo receive korte help korbe.
 
-## Getting Started
 
-First, run the development server:
+--> Next js e normally ekta component server component hoy ar server component e amra by default kuno interactivity add korte pari na, 
+je karone onClick, onSubmit etc use kora jabe na, ar eta korte hole amake component ke client component e convert korte hobe, jeta amra "use client" diye korte pari.
+"Use client" use korle amader component client side e render hobe, ar amra onClick, onSubmit etc use korte parbo.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+--> Jokhon ami onSubmit er vitor amar function dibo, automatically event object ta function er parameter hisebe pass hoye jabe, ar ami oi event object theke form er data gulo receive korte parbo. Tar jonno amake first e.preventDefault() call korte hobe, jate form submit hole page reload na hoy, tarpor ami event.target theke form er data gulo receive korte parbo. Ekhon target theke data pete hole amake age input er moddhe name attribute dite hobe, jate ami event.target.name er maddhome oi input er value ta pete pari. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-->
