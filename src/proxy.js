@@ -36,6 +36,6 @@ export async function proxy(request) {
 // export default function proxy(request) { ... }
  
 export const config = {
-  matcher: ['/career', "/about-us", "/" , "/category/01"],
+  matcher: ['/career'],
 
 }
