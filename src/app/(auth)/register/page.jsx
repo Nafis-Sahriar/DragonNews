@@ -1,24 +1,48 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
 
     const {register, handleSubmit , formState:{errors}} = useForm();
 
 
-    const HandleRegisterFunc =(data) =>
+    const HandleRegisterFunc =async (data) =>
     {
         
         const {name, email, password, photoURL} = data;
-        // Destructure kore nilam, direct value pabo ebar. 
-        // ager bar data object ta direct pacchilam jar vitor props akare register field er jinish gulo ashtechilo.
         console.log(name);
+
+        //  Function ta async kora hoyeche, jeno await kore amra auth function implement korte pari. 
+
+        const {data:res, error} = await authClient.signUp.email({
+
+            name:name,
+            email:email,
+            password:password,
+            image: photoURL,
+            callbackURL: "/login"
+        })
+
+        console.log(res, error);
+
+        if(error)
+        {
+            toast.warning(error.message)
+        }
+        if(res)
+        {
+           toast.success("Successfully Signed Up.")
+        }
+
+
 
     }
 
-    console.log(errors);
+    // console.log(errors);
 
 
   return (

@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/Components/Shared/Header";
 import Navbar from "@/Components/Shared/Navbar";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -36,7 +37,7 @@ export default function RootLayout({ children }) {
         
         
         {children}
-        
+        <ToastContainer />
         </body>
     </html>
   );

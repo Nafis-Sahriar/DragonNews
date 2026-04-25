@@ -1,21 +1,49 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const LogInPage = () => {
+
+
+    const [isShowPassword, setShowPassword] = useState(false);
 
     const {register, handleSubmit , formState:{errors}} = useForm();
 
 
-    const handleLogInFunc =(data) =>
+    const handleLogInFunc =async (data) =>
     {
         
-        console.log(data);
+        // console.log(data);
+
+        const {email,password} = data;
+
+        // console.log(email, password);
+
+        const { data:res, error } = await authClient.signIn.email({
+            email: email, // required
+            password: password, // required
+            rememberMe: true,
+            callbackURL: "/",
+});
+
+        if(error)
+        {
+            toast.warning(error.message)
+        }
+        if(res)
+        {
+            toast.success(" Welcome! ")
+        }
+
+
 
     }
 
-    console.log(errors);
+    // console.log(errors);
 
 
   return (
@@ -37,7 +65,13 @@ const LogInPage = () => {
 
                 <legend className="fieldset-legend">Password</legend>
 
-                <input {...register("password",{required:"Password Required for log in."})} type="password" className="input" placeholder="Enter Your Password" />
+                <input {...register("password",{required:"Password Required for log in."})} type={isShowPassword? "text" : "password"} className="input" placeholder="Enter Your Password" />
+                
+                <div onClick={()=>setShowPassword(!isShowPassword)} className="flex items-center gap-2 hover:cursor-pointer">
+                     {isShowPassword? <p className="flex items-center gap-2"><FaEyeSlash />Hide Password</p> : <p className="flex items-center gap-2"> <FaEye  />Show Password</p>}
+                </div>
+               
+
                 {errors.password && <p className="text-red-700">{errors.password.message}</p>}
 
           </fieldset>
