@@ -4,25 +4,25 @@ import Marquee from "react-fast-marquee";
 const news = [
   {
     id: 1,
-    title: "10 e 10, ",
+    title: "Hellow Mr. How are you!  ",
     description: "AI tools are helping students learn faster and more efficiently across the world.",
     date: "2026-04-20"
   },
   {
     id: 2,
-    title: "Robotics ami kicchu parina, if you have any notes, pewese? Speacilly theories and block diagrams na ki jeno!",
+    title: "Robotics exam kalke amar, ami ekhon eshob kortesi.",
     description: "Leaders from different countries gather to discuss climate change solutions.",
     date: "2026-04-18"
   },
   {
     id: 3,
-    title: "Zazakallah Khair...",
+    title: "Trump just got divorced",
     description: "Several companies unveiled their latest smartphones with advanced features.",
     date: "2026-04-15"
   },
   {
     id: 4,
-    title: "May you have an amaazziing dayyy.",
+    title: "Its spring 26- 5th Semester of mine.",
     description: "A rising startup secured major investment to expand its business globally.",
     date: "2026-04-12"
   }
