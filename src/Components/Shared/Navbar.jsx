@@ -58,11 +58,25 @@ const Navbar = () => {
 
                         </div>
                     ) : (
+                      <div className='flex gap-2'>
+
+                      <Link href={'/login'}>
                         <div className='flex justify-center lg:justify-end w-full lg:w-auto'>
                             <button className='btn bg-black text-white text-sm sm:text-base px-3 sm:px-4 w-full sm:w-auto'>
-                                <Link href={'/login'}>Log In</Link>
+                               Log In
                             </button>
                         </div>
+                        </Link>
+
+                         <Link href={'/register'}>
+                        <div className='flex justify-center lg:justify-end w-full lg:w-auto'>
+                            <button className='btn bg-black text-white text-sm sm:text-base px-3 sm:px-4 w-full sm:w-auto'>
+                               Register
+                            </button>
+                        </div>
+                        </Link>
+                      
+                      </div>
                     )
                 }
 
