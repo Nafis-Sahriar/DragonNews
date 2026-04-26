@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 const AuthLayout = ({children}) => {
     return (
         <div className={`${monserrat.className}`}>
-            <Navbar></Navbar>
+            
             {children}
            
                <ToastContainer />

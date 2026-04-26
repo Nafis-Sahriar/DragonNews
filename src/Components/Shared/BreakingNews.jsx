@@ -1,52 +1,30 @@
-import React from "react";
-import Marquee from "react-fast-marquee";
+import React from 'react';
+import logo from "@/assets/logo.png"
+import Image from 'next/image';
+import { format } from 'date-fns';
 
-const news = [
-  {
-    id: 1,
-    title: "New AI Technology is Transforming Education",
-    description: "AI tools are helping students learn faster and more efficiently across the world.",
-    date: "2026-04-20"
-  },
-  {
-    id: 2,
-    title: "Global Climate Summit 2026 Begins",
-    description: "Leaders from different countries gather to discuss climate change solutions.",
-    date: "2026-04-18"
-  },
-  {
-    id: 3,
-    title: "Tech Companies Launch New Smartphones",
-    description: "Several companies unveiled their latest smartphones with advanced features.",
-    date: "2026-04-15"
-  },
-  {
-    id: 4,
-    title: "Local Startup Raises Millions in Funding",
-    description: "A rising startup secured major investment to expand its business globally.",
-    date: "2026-04-12"
-  },
-  {
-    id: 5,
-    title: "Space Agency Plans New Moon Mission",
-    description: "Scientists are preparing for a new mission aimed at exploring the Moon.",
-    date: "2026-04-10"
-  }
-];
+const Header = () => {
+    return (
+        <div className='text-center py-6 sm:py-8 md:py-10 lg:py-12 space-y-2 sm:space-y-3 px-3 max-w-5xl mx-auto'>
 
-const BreakingNews = () => {
-  return (
-    <div className="flex justify-between gap-4 bg-gray-200 w-[90%] mx-auto p-2">
+           <Image
+             src={logo}
+             width={300}
+             height={200}
+             alt='logo'
+             className='mx-auto w-36 sm:w-48 md:w-60 lg:w-72 h-auto'
+           />
 
+           <p className='text-xs sm:text-sm md:text-base lg:text-lg text-gray-600'>
+             Journalism without Fear or Favour
+           </p>
 
-      <button className="btn bg-red-600 text-white">Latest News</button>
-      <Marquee pauseOnHover={true} speed={150}>
-           {
-            news.map((n => <span className="px-10" key={n.id}>{n.title}</span>))
-           }
-      </Marquee>
-    </div>
-  );
+           <p className='text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-500'>
+             {format(new Date(), "EEEE, MMM, dd , yyyy")}
+           </p>
+
+        </div>
+    );
 };
 
-export default BreakingNews;
+export default Header;

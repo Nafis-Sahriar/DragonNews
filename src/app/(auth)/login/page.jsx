@@ -8,27 +8,20 @@ import { toast } from "react-toastify";
 
 const LogInPage = () => {
 
-
     const [isShowPassword, setShowPassword] = useState(false);
 
     const {register, handleSubmit , formState:{errors}} = useForm();
 
-
     const handleLogInFunc =async (data) =>
     {
-        
-        // console.log(data);
-
         const {email,password} = data;
 
-        // console.log(email, password);
-
         const { data:res, error } = await authClient.signIn.email({
-            email: email, // required
-            password: password, // required
+            email: email,
+            password: password,
             rememberMe: true,
             callbackURL: "/",
-});
+        });
 
         if(error)
         {
@@ -38,48 +31,71 @@ const LogInPage = () => {
         {
             toast.success(" Welcome! ")
         }
-
-
-
     }
 
-    // console.log(errors);
-
-
   return (
-    <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-300">
-      <div className="p-10 rounded-xl bg-white ">
-        <h2 className="font-bold text-3xl text-center mb-15">Login Your Account</h2>
+    <div className="min-h-screen flex justify-center items-center bg-slate-100 px-3 sm:px-4">
 
-        <form className="space-y-4" onSubmit={handleSubmit(handleLogInFunc)}>
-          <fieldset className="fieldset">
+      <div className="w-full max-w-md sm:max-w-lg p-5 sm:p-8 md:p-10 rounded-xl bg-white shadow-md space-y-5">
 
-                <legend className="fieldset-legend">E-Mail</legend>
+        <h2 className="font-bold text-xl sm:text-2xl md:text-3xl text-center">
+          Login Your Account
+        </h2>
 
-                <input {...register("email", {required:"Email is required to log in."})} type="email" className="input" placeholder="Enter Your Email" />
-                {errors.email? <p className="text-red-700">{errors.email.message}</p>:<></>}
+        <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit(handleLogInFunc)}>
+
+          <fieldset className="fieldset space-y-1">
+
+                <legend className="fieldset-legend text-sm sm:text-base">E-Mail</legend>
+
+                <input 
+                  {...register("email", {required:"Email is required to log in."})}
+                  type="email"
+                  className="input w-full text-sm sm:text-base"
+                  placeholder="Enter Your Email"
+                />
+
+                {errors.email? <p className="text-red-700 text-xs sm:text-sm">{errors.email.message}</p>:<></>}
 
           </fieldset>
 
-          <fieldset className="fieldset">
+          <fieldset className="fieldset space-y-1">
 
-                <legend className="fieldset-legend">Password</legend>
+                <legend className="fieldset-legend text-sm sm:text-base">Password</legend>
 
-                <input {...register("password",{required:"Password Required for log in."})} type={isShowPassword? "text" : "password"} className="input" placeholder="Enter Your Password" />
+                <input 
+                  {...register("password",{required:"Password Required for log in."})}
+                  type={isShowPassword? "text" : "password"}
+                  className="input w-full text-sm sm:text-base"
+                  placeholder="Enter Your Password"
+                />
                 
-                <div onClick={()=>setShowPassword(!isShowPassword)} className="flex items-center gap-2 hover:cursor-pointer">
-                     {isShowPassword? <p className="flex items-center gap-2"><FaEyeSlash />Hide Password</p> : <p className="flex items-center gap-2"> <FaEye  />Show Password</p>}
+                <div 
+                  onClick={()=>setShowPassword(!isShowPassword)}
+                  className="flex items-center gap-2 hover:cursor-pointer text-xs sm:text-sm text-gray-600"
+                >
+                     {isShowPassword
+                       ? <p className="flex items-center gap-2"><FaEyeSlash />Hide Password</p>
+                       : <p className="flex items-center gap-2"><FaEye />Show Password</p>
+                     }
                 </div>
-               
 
-                {errors.password && <p className="text-red-700">{errors.password.message}</p>}
+                {errors.password && <p className="text-red-700 text-xs sm:text-sm">{errors.password.message}</p>}
 
           </fieldset>
 
-          <button className="btn btn-xs sm:btn-sm md:btn-md bg-black text-white  w-full">Log In</button>
+          <button className="btn w-full bg-black text-white text-sm sm:text-base py-2 sm:py-3">
+            Log In
+          </button>
+
         </form>
 
-            <p className="font-bold mt-5 text-sm">Don&apos;t have an account? <Link href={'/register'} className="text-red-700 font-bold">Register</Link></p>
+        <p className="font-semibold text-xs sm:text-sm text-center">
+          Don&apos;t have an account?{" "}
+          <Link href={'/register'} className="text-red-700 font-bold">
+            Register
+          </Link>
+        </p>
 
       </div>
     </div>

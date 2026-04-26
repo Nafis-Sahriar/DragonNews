@@ -9,17 +9,12 @@ const RegisterPage = () => {
 
     const {register, handleSubmit , formState:{errors}} = useForm();
 
-
     const HandleRegisterFunc =async (data) =>
     {
-        
         const {name, email, password, photoURL} = data;
         console.log(name);
 
-        //  Function ta async kora hoyeche, jeno await kore amra auth function implement korte pari. 
-
         const {data:res, error} = await authClient.signUp.email({
-
             name:name,
             email:email,
             password:password,
@@ -37,67 +32,94 @@ const RegisterPage = () => {
         {
            toast.success("Successfully Signed Up.")
         }
-
-
-
     }
 
-    // console.log(errors);
-
-
   return (
-    <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-300">
-      <div className="px-10 py-10 rounded-xl bg-white ">
-        <h2 className="font-bold text-3xl text-center mb-15">Register Your Account</h2>
+    <div className="min-h-screen flex justify-center items-center bg-slate-100 px-3 sm:px-4">
 
-        <form className="space-y-4" onSubmit={handleSubmit(HandleRegisterFunc)}>
+      <div className="w-full max-w-md sm:max-w-lg p-5 sm:p-8 md:p-10 rounded-xl bg-white shadow-md space-y-5">
 
-              <fieldset className="fieldset">
+        <h2 className="font-bold text-xl sm:text-2xl md:text-3xl text-center">
+          Register Your Account
+        </h2>
 
-                <legend className="fieldset-legend">Name</legend>
+        <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit(HandleRegisterFunc)}>
 
-                <input {...register("name", {required:"Name Can Not Be Empty"})} type="text" className="input" placeholder="Enter Your Full-Name" />
-                {errors.name? <p className="text-red-700">{errors.name.message}</p>:<></>}
+          <fieldset className="fieldset space-y-1">
+
+                <legend className="fieldset-legend text-sm sm:text-base">Name</legend>
+
+                <input
+                  {...register("name", {required:"Name Can Not Be Empty"})}
+                  type="text"
+                  className="input w-full text-sm sm:text-base"
+                  placeholder="Enter Your Full-Name"
+                />
+
+                {errors.name? <p className="text-red-700 text-xs sm:text-sm">{errors.name.message}</p>:<></>}
+
+          </fieldset>
+
+
+          <fieldset className="fieldset space-y-1">
+
+                <legend className="fieldset-legend text-sm sm:text-base">Photo URL</legend>
+
+                <input
+                  {...register("photoURL", {required:"Need Photo URL : If you Do not have, just type something."})}
+                  type="text"
+                  className="input w-full text-sm sm:text-base"
+                  placeholder="Enter Your Photo URL"
+                />
+
+                {errors.photoURL? <p className="text-red-700 text-xs sm:text-sm">{errors.photoURL.message}</p>:<></>}
 
           </fieldset>
 
 
-             <fieldset className="fieldset">
+          <fieldset className="fieldset space-y-1">
 
-                <legend className="fieldset-legend">Photo URL</legend>
+                <legend className="fieldset-legend text-sm sm:text-base">E-Mail</legend>
 
-                <input {...register("photoURL", {required:"Need Photo URL : If you Do not have, just type something."})} type="text" className="input" placeholder="Enter Your Photo URL" />
-                {errors.photoURL? <p className="text-red-700">{errors.photoURL.message}</p>:<></>}
+                <input
+                  {...register("email", {required:"Email is required to log in."})}
+                  type="email"
+                  className="input w-full text-sm sm:text-base"
+                  placeholder="Enter Your Email"
+                />
 
-          </fieldset>
-
-
-
-
-
-
-          <fieldset className="fieldset">
-
-                <legend className="fieldset-legend">E-Mail</legend>
-
-                <input {...register("email", {required:"Email is required to log in."})} type="email" className="input" placeholder="Enter Your Email" />
-                {errors.email? <p className="text-red-700">{errors.email.message}</p>:<></>}
+                {errors.email? <p className="text-red-700 text-xs sm:text-sm">{errors.email.message}</p>:<></>}
 
           </fieldset>
 
-          <fieldset className="fieldset">
 
-                <legend className="fieldset-legend">Password</legend>
+          <fieldset className="fieldset space-y-1">
 
-                <input {...register("password",{required:"Password Required for log in."})} type="password" className="input" placeholder="Enter your password" />
-                {errors.password && <p className="text-red-700">{errors.password.message}</p>}
+                <legend className="fieldset-legend text-sm sm:text-base">Password</legend>
+
+                <input
+                  {...register("password",{required:"Password Required for log in."})}
+                  type="password"
+                  className="input w-full text-sm sm:text-base"
+                  placeholder="Enter your password"
+                />
+
+                {errors.password && <p className="text-red-700 text-xs sm:text-sm">{errors.password.message}</p>}
 
           </fieldset>
 
-          <button className="btn btn-xs sm:btn-sm md:btn-md bg-black text-white  w-full">Register</button>
+          <button className="btn w-full bg-black text-white text-sm sm:text-base py-2 sm:py-3">
+            Register
+          </button>
+
         </form>
 
-            <p className="font-bold mt-5 text-sm">Already Registered? <Link href={'/login'} className="text-green-700 font-bold">Log In</Link></p>
+        <p className="font-semibold text-xs sm:text-sm text-center">
+          Already Registered?{" "}
+          <Link href={'/login'} className="text-green-700 font-bold">
+            Log In
+          </Link>
+        </p>
 
       </div>
     </div>
