@@ -7,7 +7,11 @@ const Navlink = ({href, children}) => {
 
     const pathName = usePathname();
 
-    const isActive = href===pathName;
+    let isActive = href===pathName;
+
+    
+
+    
 
     return (
         
